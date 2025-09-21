@@ -1,5 +1,6 @@
 <?php 
 
+namespace app;
 
 class ContaBanco {
     public $numConta ;
@@ -8,7 +9,7 @@ class ContaBanco {
     private $saldo ;
     private $status ;
 
-    function ContaBanco($nc, $ct, $nome){
+    function __construct($nc, $ct, $nome){
         $this->numConta = $nc;
         $this->contatipo = $ct;
         $this->dono = $nome;
@@ -19,9 +20,9 @@ class ContaBanco {
     public function abrirConta (string $ct){
         $this->contatipo = $ct;
         $this->status = true;
-        if ($ct = "contaCorrente") {
+        if ($ct == "contaCorrente") {
             $this->saldo = 50;
-    }   elseif ($ct = "contaPoupança") {
+    }   elseif ($ct == "contaPoupança") {
         $this->saldo = 150;
     }
 
@@ -29,33 +30,39 @@ class ContaBanco {
 
     public function fecharConta (){
         if($this->saldo > 0){
-            return "Remova o saldo da conta";
+            echo "Remova o saldo da conta";
         }elseif ($this->saldo < 0) {
-            return "Quite o debito antes de fechar a conta";
+            echo "Quite o debito antes de fechar a conta";
         }else{
             $this->status = false;
-            return "conta encerrada";
+            echo "conta encerrada";
         }
     }
 
     public function depositar (float $deposito){
         if ($this->status = true) {
         $this->saldo += $deposito;
-        return "deposito Realizado";
+        echo "deposito Realizado";
         }
     }
 
     public function sacar (float $retirada){
         if ($this->status = true) {
         $this->saldo -= $retirada;
-        return "saque Realizado";
+        echo "saque Realizado";
         }
     }
 
     public function pagarTaxa (float $taxa = 27,){
         if ($this->status = true) {
-        $this->saldo -= $taxa;
-        return "Pagamento Realizado";
+            if ($this->saldo > $taxa) {
+                $this->saldo -= $taxa;
+                echo "Pagamento Realizado";
+
+            }else{
+                echo "saldo insuficiente";
+            }
+
         }
 
     }
