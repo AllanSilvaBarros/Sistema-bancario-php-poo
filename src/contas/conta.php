@@ -5,18 +5,18 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
 </head>
-<body>
+<body><pre>
     <?php 
         require __DIR__ . '/../../vendor/autoload.php';
         
-        use app\ContaBanco;
+        use Allan\ContaBanco\classes\ContaBanco;
 
         $cliente = new ContaBanco(
             '124521',
-            'Corrente',
             'allan'
         );
-        var_dump($ContaBanco -> abrirConta());
-    ?>
+        print_r($cliente);
+?>
+</pre>
 </body>
 </html>

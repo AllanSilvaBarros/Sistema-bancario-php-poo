@@ -1,6 +1,6 @@
 <?php 
 
-namespace app;
+namespace Allan\ContaBanco\classes;
 
 class ContaBanco {
     public $numConta ;
@@ -9,9 +9,9 @@ class ContaBanco {
     private $saldo ;
     private $status ;
 
-    function __construct($nc, $ct, $nome){
+    function __construct($nc, $nome){
         $this->numConta = $nc;
-        $this->contatipo = $ct;
+        $this->contatipo ;
         $this->dono = $nome;
         $this->saldo = 0;
         $this->status = false;
@@ -22,7 +22,7 @@ class ContaBanco {
         $this->status = true;
         if ($ct == "contaCorrente") {
             $this->saldo = 50;
-    }   elseif ($ct == "contaPoupança") {
+    }   elseif ($ct == "contaPoupanca") {
         $this->saldo = 150;
     }
 
@@ -30,7 +30,7 @@ class ContaBanco {
 
     public function fecharConta (){
         if($this->saldo > 0){
-            echo "Remova o saldo da conta";
+            echo "<p>Remova o saldo da conta</p>";
         }elseif ($this->saldo < 0) {
             echo "Quite o debito antes de fechar a conta";
         }else{
@@ -49,7 +49,7 @@ class ContaBanco {
     public function sacar (float $retirada){
         if ($this->status = true) {
         $this->saldo -= $retirada;
-        echo "saque Realizado";
+        echo "<p>saque Realizado</p>";
         }
     }
 
